@@ -66,20 +66,32 @@ var HomeView = React.createClass({
     }
 });
 
-var ds = new ListView.DataSource({
-  rowHasChanged: (r1, r2) => r1 !== r2,
-  sectionHeaderHasChanged: (h1, h2) => h1 !== h2,
-});
-var COMPONENTS = [require('./components/ListView')];
-
 var ScheduleView = React.createClass({
     getInitialState: function() {
       return {
-        dataSource: ds.cloneWithRowsAndSections({
-          components: COMPONENTS,
-          apis: [],
+        dataSource: new ListView.DataSource({
+          rowHasChanged: (row1, row2) => row1 !== row2,
         })
       };
+    },
+    componentDidMount: function() {
+      // this.fetchData();
+      var rowsData = [{
+          title: "Breakfast",
+          description: "This is when we eat bacon and eggs"
+      },
+      {
+        title: "Photo Time",
+        description: "Dress up in your best party gear - for glamour and glory!"
+      },
+      {
+        title: "Bus Departs",
+        description: "The bus leaves from 190 Hotham St, Elsternwick"
+      },
+      ]
+      this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(rowsData)
+        });
     },
     _renderSectionHeader: function(data: any, section: string) {
       return (
@@ -90,16 +102,16 @@ var ScheduleView = React.createClass({
         </View>
       );
     },
-    renderRow: function(example: any, i: number) {
+    renderRow: function(data) {
       return (
-        <View key={i}>
+        <View >
           <TouchableHighlight>
             <View style={styles.row}>
               <Text style={styles.rowTitleText}>
-                {example.title}
+                {data.title}
               </Text>
               <Text style={styles.rowDetailText}>
-                {example.description}
+                {data.description}
               </Text>
             </View>
           </TouchableHighlight>
@@ -109,20 +121,13 @@ var ScheduleView = React.createClass({
     },
 
     render: function() {
-        return (
-            <View style={styles.container}>
-              <ListView
-                style={styles.list}
-                dataSource={this.state.dataSource}
-                renderRow={this.renderRow.bind(this)}
-                renderSectionHeader={this._renderSectionHeader}
-                keyboardShouldPersistTaps={true}
-                automaticallyAdjustContentInsets={false}
-                keyboardDismissMode="on-drag"
-              />
-              <Text>I am the Schedule View</Text>
-            </View>
-        );
+      return (
+        <ListView
+          style={styles.list}
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow}
+        />
+      );
     }
 });
 
