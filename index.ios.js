@@ -7,6 +7,7 @@
 var React = require('react-native');
 // var HomeView = require('./views/home.js');
 var ListView = require('./components/ListView');
+var MyTopHeader = require('./components/header');
 var {
   AppRegistry,
   StyleSheet,
@@ -38,33 +39,7 @@ var balnarring2015 = React.createClass({
   }
 });
 
-var HomeView = React.createClass({
-    goToFeedView: function() {
-      this.props.navigator.push({
-            name: 'FeedView',
-            component: FeedView
-        });
-    },
-    goToSchedule: function() {
-      this.props.navigator.push({
-            name: 'ScheduleView',
-            component: ScheduleView
-        });
-    },
-    render: function() {
-      return (
-        <View style={styles.container}>
-            <Text>I am the Home Page</Text>
-            <Text onPress={this.goToFeedView}>
-              Feed View
-            </Text>
-            <Text onPress={this.goToSchedule}>
-              Schedule
-            </Text>
-        </View>
-      );
-    }
-});
+
 
 var ScheduleView = React.createClass({
     getInitialState: function() {
@@ -77,40 +52,138 @@ var ScheduleView = React.createClass({
     componentDidMount: function() {
       // this.fetchData();
       var rowsData = [{
-          title: "Breakfast",
-          description: "This is when we eat bacon and eggs"
+          title: "Arrive at 190 Hotham Street",
+          description: "Champagne breakfast in the backyard. Dress up in your best party gear - for glamour and for glory!",
+          time: "9:00am",
       },
       {
         title: "Photo Time",
-        description: "Dress up in your best party gear - for glamour and glory!"
+        description: "One for the history books. Group photo to be taken with everyone in costume. Please ensure that you are here on time.",
+        time: "9:45am"
       },
       {
         title: "Bus Departs",
-        description: "The bus leaves from 190 Hotham St, Elsternwick"
+        description: "The bus will be departing at 10am sharp. Toot toot! This year the bus will be towing a trailer, so we should have more room inside.",
+        time: "10:00am"
+      },
+      {
+        title: "Arrive at Racecourse",
+        description: "The bus will arrive at Balnarring at approximately 11 o'clock. We'll stake our claim on some prime real estate on the lawn, and prepare for the day.",
+        time: "11:00am"
+      },
+      {
+        title: "Race 1",
+        description: "The Balnarring Cup Race 1",
+        time: "1:00pm",
+        raceData: {
+          name: "Flinders Trophy Race",
+          length: "1200m",
+          tip: "6 - Pumpernickel's Revenge"
+        }
+      },
+      {
+        title: "Race 2",
+        description: "The Balnarring Cup Race 2",
+        time: "TBC",
+        raceData: {
+          name: "Flinders Trophy Race",
+          length: "2000m",
+          tip: "6 - Pumpernickel's Revenge"
+        }
+      },
+      {
+        title: "Race 3",
+        description: "The Balnarring Cup Race 3",
+        time: "TBC",
+        raceData: {
+          name: "Flinders Trophy Race",
+          length: "1600m",
+          tip: "6 - Pumpernickel's Revenge"
+        }
+      },
+      {
+        title: "Race 4",
+        description: "The Balnarring Cup Race 4",
+        time: "TBC",
+        raceData: {
+          name: "Flinders Trophy Race",
+          length: "1200m",
+          tip: "6 - Pumpernickel's Revenge"
+        }
+      },
+      {
+        title: "Race 5",
+        description: "The Balnarring Cup Race 5",
+        time: "TBC",
+        raceData: {
+          name: "Flinders Trophy Race",
+          length: "1200m",
+          tip: "6 - Pumpernickel's Revenge"
+        }
+      },
+      {
+        title: "Race 6",
+        description: "The Balnarring Cup Race 6",
+        time: "TBC",
+        raceData: {
+          name: "Flinders Trophy Race",
+          length: "2000m",
+          tip: "6 - Pumpernickel's Revenge"
+        }
+      },
+      {
+        title: "Leave Balnarring",
+        description: "Pile back into the bus for some rowdy singalongs on the way home. Don't get any spew in the bus!",
+        time: "5:00pm",
+      },
+      {
+        title: "Arrive in Elsternwick",
+        description: "The bus arrives back at Hotham St.",
+        time: "6:00pm",
+      },
+      {
+        title: "Awards Ceremony",
+        description: "The presentation of the prestigious Balnarring Champion will take place, presented by the previous year's winner.",
+        time: "6:30pm",
+      },
+      {
+        title: "After Party",
+        description: "Pizzas and more fun in the backyard until we all fall asleep.",
+        time: "7:00pm",
       },
       ]
       this.setState({
           dataSource: this.state.dataSource.cloneWithRows(rowsData)
         });
     },
-    _renderSectionHeader: function(data: any, section: string) {
-      return (
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionHeaderTitle}>
-            {section.toUpperCase()}
-          </Text>
-        </View>
-      );
-    },
     renderRow: function(data) {
+      var raceData;
+
+      if (data.raceData) {
+        raceData =
+        <View style={styles.raceData}>
+          <Text>Name: {data.raceData.name}</Text>
+          <Text>Length: {data.raceData.length}</Text>
+          <Text>Hot Tip: {data.raceData.tip}</Text>
+        </View>;
+      }
       return (
-        <View >
+        <View>
           <TouchableHighlight>
             <View style={styles.row}>
-              <Text style={styles.rowTitleText}>
-                {data.title}
-              </Text>
-              <Text style={styles.rowDetailText}>
+
+              <View style={styles.rowHeader}>
+                <Text style={styles.rowTitleText}>
+                  {data.title}
+                </Text>
+                <Text style={styles.rowTime}>
+                  {data.time}
+                </Text>
+              </View>
+
+              {raceData}
+
+              <Text style={styles.rowDescription}>
                 {data.description}
               </Text>
             </View>
@@ -122,40 +195,24 @@ var ScheduleView = React.createClass({
 
     render: function() {
       return (
-        <ListView
-          style={styles.list}
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
-        />
+        <View style={styles.flex1}>
+          <MyTopHeader left={'< Back'} />
+          <ListView
+            style={styles.list}
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow}
+          />
+        </View>
       );
     }
 });
 
-var FeedView = React.createClass({
-    goHome: function() {
-      this.props.navigator.popToTop();
-    },
-    render: function() {
-        return (
-            <View style={styles.container}>
-              <Text>I am the Feed View</Text>
-                <Text>
-                    Heyo View
-                </Text>
-                <Text onPress={this.goHome}>
-                    Home
-                </Text>
-            </View>
-        );
-    }
-});
-
-
-
-
 
 
 var styles = StyleSheet.create({
+  flex1: {
+    flex: 1
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -196,15 +253,28 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 15,
     paddingVertical: 8,
+    borderTopColor: "#eee",
+    borderTopWidth: 1
+  },
+  rowHeader: {
+    justifyContent: 'space-between',
+    flexDirection: 'row'
   },
   rowTitleText: {
     fontSize: 17,
     fontWeight: '500',
+    marginBottom: 10,
   },
-  rowDetailText: {
+  rowDescription: {
     fontSize: 15,
     color: '#888888',
     lineHeight: 20,
+  },
+  rowTime: {
+    fontSize: 13
+  },
+  raceData: {
+    fontSize: 15
   },
   searchRow: {
     backgroundColor: '#eeeeee',
