@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react-native');
-// var Navigator = require('../components/navigator.js');
 var FeedView = require('../views/feed.js');
 var ScheduleView = require('../views/schedule.js');
+var VoteView = require('../views/voteMain.js');
 var {
   AppRegistry,
   StyleSheet,
@@ -25,6 +25,12 @@ var HomeView = React.createClass({
             component: ScheduleView
         });
     },
+    goToVotePage: function() {
+      this.props.navigator.push({
+            name: 'VoteView',
+            component: VoteView
+        });
+    },
     render: function() {
       return (
         <View style={styles.container}>
@@ -34,6 +40,9 @@ var HomeView = React.createClass({
             </Text>
             <Text onPress={this.goToSchedule}>
               Schedule
+            </Text>
+            <Text onPress={this.goToVotePage}>
+              Vote
             </Text>
         </View>
       );

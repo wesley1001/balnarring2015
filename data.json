@@ -1,0 +1,302 @@
+{
+  "schedule": [
+    {
+        "title": "Arrive at 190 Hotham Street",
+        "description": "Champagne breakfast in the backyard. Dress up in your best party gear - for glamour and for glory!",
+        "time": "9:00am"
+    },
+    {
+        "title": "Photo Time",
+        "description": "One for the history books. Group photo to be taken with everyone in costume. Please ensure that you are here on time.",
+        "time": "9:45am"
+    },
+    {
+        "title": "Bus Departs",
+        "description": "The bus will be departing at 10am sharp. Toot toot! This year the bus will be towing a trailer, so we should have more room inside.",
+        "time": "10:00am"
+    },
+    {
+        "title": "Arrive at Racecourse",
+        "description": "The bus will arrive at Balnarring at approximately 11 o'clock. We'll stake our claim on some prime real estate on the lawn, and prepare for the day.",
+        "time": "11:00am"
+    },
+    {
+        "title": "Race 1",
+        "description": "The Balnarring Cup Race 1",
+        "time": "1:00pm",
+        "raceData": {
+            "name": "Flinders Trophy Race",
+            "length": "1200m",
+            "tip": "6 - Pumpernickel's Revenge"
+        }
+    },
+    {
+        "title": "Race 2",
+        "description": "The Balnarring Cup Race 2",
+        "time": "TBC",
+        "raceData": {
+            "name": "Flinders Trophy Race",
+            "length": "2000m",
+            "tip": "6 - Pumpernickel's Revenge"
+        }
+    },
+    {
+        "title": "Race 3",
+        "description": "The Balnarring Cup Race 3",
+        "time": "TBC",
+        "raceData": {
+            "name": "Flinders Trophy Race",
+            "length": "1600m",
+            "tip": "6 - Pumpernickel's Revenge"
+        }
+    },
+    {
+        "title": "Race 4",
+        "description": "The Balnarring Cup Race 4",
+        "time": "TBC",
+        "raceData": {
+            "name": "Flinders Trophy Race",
+            "length": "1200m",
+            "tip": "6 - Pumpernickel's Revenge"
+        }
+    },
+    {
+        "title": "Race 5",
+        "description": "The Balnarring Cup Race 5",
+        "time": "TBC",
+        "raceData": {
+            "name": "Flinders Trophy Race",
+            "length": "1200m",
+            "tip": "6 - Pumpernickel's Revenge"
+        }
+    },
+    {
+        "title": "Race 6",
+        "description": "The Balnarring Cup Race 6",
+        "time": "TBC",
+        "raceData": {
+            "name": "Flinders Trophy Race",
+            "length": "2000m",
+            "tip": "6 - Pumpernickel's Revenge"
+        }
+    },
+    {
+        "title": "Leave Balnarring",
+        "description": "Pile back into the bus for some rowdy singalongs on the way home. Don't get any spew in the bus!",
+        "time": "5:00pm"
+    },
+    {
+        "title": "Arrive in Elsternwick",
+        "description": "The bus arrives back at Hotham St.",
+        "time": "6:00pm"
+    },
+    {
+        "title": "Awards Ceremony",
+        "description": "The presentation of the prestigious Balnarring Champion will take place, presented by the previous year's winner.",
+        "time": "6:30pm"
+    },
+    {
+        "title": "After Party",
+        "description": "Pizzas and more fun in the backyard until we all fall asleep.",
+        "time": "7:00pm"
+    }
+  ],
+  "people": [
+    {
+      "name": "Matt Cameron",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Megan Tait",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Ned Brennan",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Lauren Arthur",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Adam Redmond",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Laura O'Callaghan",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Emma Baldock",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Jayden Crawford",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Dylan Pinn",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Erin Leach",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Kate Garvey",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Ruth English",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Kieran Fernandez",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Daniel (Eggy) Wiess",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Sonja Mileskja",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Peter Rank",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Kathryn Scerri",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Stuart Richardson",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Maria Hach",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Ellen Dawson",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Matt Dawson",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Hayden Felsenthal",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Andrew (Bunna) Wilson",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Dave Dewar",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Tess Beltsos-Russo",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Susha Arnheim",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Shane Vance",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    },
+    {
+      "name": "Stephen Grasby",
+      "votes": 0,
+      "v3": "",
+      "v2": "",
+      "v1": ""
+    }
+  ]
+}
