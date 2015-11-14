@@ -4,6 +4,7 @@ var React = require('react-native');
 var FeedView = require('../views/feed.js');
 var ScheduleView = require('../views/schedule.js');
 var VoteView = require('../views/voteMain.js');
+var CameraView = require('../views/cameraPage.js');
 var {
   AppRegistry,
   StyleSheet,
@@ -31,6 +32,12 @@ var HomeView = React.createClass({
             component: VoteView
         });
     },
+    goToCameraPage: function() {
+      this.props.navigator.push({
+            name: 'CameraView',
+            component: CameraView
+        });
+    },
     render: function() {
       return (
         <View style={styles.container}>
@@ -43,6 +50,9 @@ var HomeView = React.createClass({
             </Text>
             <Text onPress={this.goToVotePage}>
               Vote
+            </Text>
+            <Text onPress={this.goToCameraPage}>
+              Camera
             </Text>
         </View>
       );
