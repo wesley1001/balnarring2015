@@ -1,3 +1,12 @@
+'use strict';
+
+var React = require('react-native');
+var {
+  StyleSheet,
+  Text,
+  View,
+} = React;
+
 var FeedView = React.createClass({
     goHome: function() {
       this.props.navigator.popToTop();
@@ -16,3 +25,14 @@ var FeedView = React.createClass({
         );
     }
 });
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+})
+
+module.exports = FeedView;
