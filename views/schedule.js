@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var MyTopHeader = require('../components/header');
 var {
   AppRegistry,
   StyleSheet,
@@ -93,7 +92,6 @@ var ScheduleView = React.createClass({
 
       return (
         <View style={styles.flex1}>
-          <MyTopHeader back={this.goBack} left={'< Back'} title={'Schedule'} />
           <ListView
             style={styles.list}
             dataSource={this.state.dataSource}
@@ -106,7 +104,8 @@ var ScheduleView = React.createClass({
 
 var styles = StyleSheet.create({
   flex1: {
-    flex: 1
+    flex: 1,
+    marginTop:64
   },
   list: {
     backgroundColor: '#eeeeee',

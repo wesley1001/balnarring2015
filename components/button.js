@@ -21,11 +21,10 @@ var MyButton = React.createClass({
 var styles = StyleSheet.create({
 	button: {
 		height: 75,
-		backgroundColor: '#eee',
+		backgroundColor: '#3BCCA6',
 		borderRadius: 5,
 		flexDirection: 'row',
 		alignItems: 'center',
-		flex: 1,
 		justifyContent: 'center'
 	},
 	content: {

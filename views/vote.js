@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var MyTopHeader = require('../components/header');
 var {
   AppRegistry,
   StyleSheet,
@@ -49,8 +48,7 @@ var VotePage = React.createClass({
     },
     renderLoadingView: function() {
       return (
-        <View>
-          <MyTopHeader back={this.goBack} left={'< Back'} />
+        <View style={styles.flex1}>
           <View style={styles.loading}>
             <Text>
               Loading some legends...
@@ -88,7 +86,6 @@ var VotePage = React.createClass({
 
       return (
         <View style={styles.flex1}>
-          <MyTopHeader back={this.goBack} left={'< Back'} title={'Vote'}/>
           <ListView
             style={styles.list}
             dataSource={this.state.dataSource}
@@ -101,7 +98,8 @@ var VotePage = React.createClass({
 
 var styles = StyleSheet.create({
   flex1: {
-    flex: 1
+    flex: 1,
+    marginTop: 64
   },
   list: {
     backgroundColor: '#eeeeee',

@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var MyTopHeader = require('../components/header');
 var Vote = require('../views/vote');
 var Button = require('../components/button');
 var {
@@ -73,8 +72,7 @@ var VoteView = React.createClass({
     },
     render: function() {
       return (
-        <View style={styles.flex1}>
-          <MyTopHeader back={this.goBack} left={'< Back'} title={'Vote'} />
+        <View style={styles.container}>
           <ListView
             style={styles.list}
             dataSource={this.state.dataSource}
@@ -89,9 +87,7 @@ var VoteView = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    marginTop: 64
   },
   list: {
     backgroundColor: '#eeeeee',
@@ -117,6 +113,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+
 })
 
 module.exports = VoteView;

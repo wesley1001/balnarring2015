@@ -9,7 +9,6 @@ var {
 var Camera = require('react-native-camera');
 var VoteView = require('../views/voteMain.js');
 var ViewPhoto = require('./photo');
-var MyTopHeader = require('../components/header');
 
 
 var cameraApp = React.createClass({
@@ -25,7 +24,6 @@ var cameraApp = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <MyTopHeader back={this.goBack} left={'< Back'} style={styles.header} />
         <Camera
           ref="cam"
           style={styles.camera}
