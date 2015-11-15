@@ -5,18 +5,17 @@ var {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
 } = React;
 
 var Header = React.createClass({
   render: function() {
     return (
-      <View style={styles.container}>
-        <TouchableHighlight>
-          <Text style={styles.textLeft} onPress={this.props.back}>{this.props.left}</Text>
-          </TouchableHighlight>
-        <Text style={styles.textCenter}>Schedule</Text>
-        <Text style={styles.textRight}>Right</Text>
+      <View>
+        <View style={styles.toolbar}>
+          <Text style={styles.toolbarButton} onPress={this.props.back}>{this.props.left}</Text>
+          <Text style={styles.toolbarTitle}>{this.props.title}</Text>
+          <Text style={styles.toolbarButton}>{this.props.right}</Text>
+        </View>
       </View>
     );
   }
@@ -24,24 +23,23 @@ var Header = React.createClass({
 
 
 var styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#ccc',
-    height: 60,
-    paddingTop: 20,
-  },
-  textLeft: {
-    lineHeight: 30,
-    marginLeft: 10
-  },
-  textCenter: {
-    lineHeight: 30,
-  },
-  textRight: {
-    lineHeight: 30,
-    marginRight: 10
-  }
+  toolbar:{
+        backgroundColor:'#81c04d',
+        paddingTop:30,
+        paddingBottom:10,
+        flexDirection:'row'
+    },
+    toolbarButton:{
+        color:'#fff',
+        textAlign:'center',
+        width: 100
+    },
+    toolbarTitle:{
+        color:'#fff',
+        textAlign:'center',
+        fontWeight:'bold',
+        flex:1
+    }
 });
 
 module.exports = Header;

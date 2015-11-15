@@ -74,7 +74,7 @@ var VoteView = React.createClass({
     render: function() {
       return (
         <View style={styles.flex1}>
-          <MyTopHeader back={this.goBack} left={'< Back'} />
+          <MyTopHeader back={this.goBack} left={'< Back'} title={'Vote'} />
           <ListView
             style={styles.list}
             dataSource={this.state.dataSource}

@@ -8,7 +8,8 @@ var {
   Text,
   View,
   TouchableHighlight,
-  ListView
+  ListView,
+  Image
 } = React;
 
 var PEOPLE_URL = "https://radiant-inferno-7719.firebaseio.com/people.json";
@@ -66,9 +67,7 @@ var VotePage = React.createClass({
         <View>
           <TouchableHighlight onPress={this.selectPerson}>
             <View style={styles.row}>
-              <Text style={styles.image}>
-                Image
-              </Text>
+              <Image source={require('./../images/person-icon.png') } style={styles.image} />
               <Text style={styles.name}>
                 {data.name}
               </Text>
@@ -89,7 +88,7 @@ var VotePage = React.createClass({
 
       return (
         <View style={styles.flex1}>
-          <MyTopHeader back={this.goBack} left={'< Back'} />
+          <MyTopHeader back={this.goBack} left={'< Back'} title={'Vote'}/>
           <ListView
             style={styles.list}
             dataSource={this.state.dataSource}

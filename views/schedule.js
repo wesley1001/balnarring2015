@@ -93,7 +93,7 @@ var ScheduleView = React.createClass({
 
       return (
         <View style={styles.flex1}>
-          <MyTopHeader back={this.goBack} left={'< Back'} />
+          <MyTopHeader back={this.goBack} left={'< Back'} title={'Schedule'} />
           <ListView
             style={styles.list}
             dataSource={this.state.dataSource}

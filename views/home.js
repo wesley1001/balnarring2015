@@ -5,6 +5,7 @@ var FeedView = require('../views/feed.js');
 var ScheduleView = require('../views/schedule.js');
 var VoteView = require('../views/voteMain.js');
 var CameraView = require('../views/cameraPage.js');
+var MyTopHeader = require('../components/header');
 var {
   AppRegistry,
   StyleSheet,
@@ -41,6 +42,8 @@ var HomeView = React.createClass({
     render: function() {
       return (
         <View style={styles.container}>
+        <MyTopHeader title={'Home'} />
+          <View style={styles.content}>
             <Text>I am the Home Page</Text>
             <Text onPress={this.goToFeedView}>
               Feed View
@@ -54,6 +57,7 @@ var HomeView = React.createClass({
             <Text onPress={this.goToCameraPage}>
               Camera
             </Text>
+          </View>
         </View>
       );
     }
@@ -62,9 +66,12 @@ var HomeView = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  content: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,

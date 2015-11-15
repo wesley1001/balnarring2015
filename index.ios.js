@@ -6,6 +6,7 @@
 
 var React = require('react-native');
 var HomeView = require('./views/home.js');
+var MyTopHeader = require('./components/header');
 var {
   AppRegistry,
   Navigator,
