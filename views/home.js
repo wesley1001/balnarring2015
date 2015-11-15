@@ -92,16 +92,16 @@ var HomeView = React.createClass({
             icon: 'th'
           },
           {
-            title: "Schedule",
-            onPress: this.goToSchedule,
-            backgroundColor: '#41D39B',
-            icon: 'list'
-          },
-          {
             title: "Camera",
             onPress: this.goToCamera,
             backgroundColor: '#F6AE2D',
             icon: 'camera'
+          },
+          {
+            title: "Schedule",
+            onPress: this.goToSchedule,
+            backgroundColor: '#41D39B',
+            icon: 'list'
           },
           {
             title: "Vote",
