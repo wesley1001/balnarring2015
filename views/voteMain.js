@@ -19,37 +19,44 @@ var VoteView = React.createClass({
           rowHasChanged: (row1, row2) => row1 !== row2,
         }),
         loaded: false,
-        rowData: [
+        votes: [
           {
+            index: 0, // for my sanity
             voteCount: 3,
             selectedPerson: "Touch to select"
           },
           {
+            index: 1,
             voteCount: 2,
             selectedPerson: "Touch to select"
           },
           {
+            index: 2,
             voteCount: 1,
             selectedPerson: "Touch to select"
           }
-        ]
+        ],
       };
     },
     componentDidMount: function() {
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this.state.rowData)
+        dataSource: this.state.dataSource.cloneWithRows(this.state.votes)
       });
     },
-    showPeople: function() {
+    showPeople: function(voteIndex) {
       this.props.navigator.push({
             name: 'VotePage',
-            component: Vote
+            component: Vote,
+            passProps: {
+              votes: this.state.votes,
+              voteIndex: voteIndex
+            }
         })
     },
     renderRow: function(data) {
       return (
         <View>
-          <TouchableHighlight onPress={this.showPeople}>
+          <TouchableHighlight onPress={() => this.showPeople(data.index)}>
             <View style={styles.row}>
               <Text style={styles.voteCount}>
                 {data.voteCount}
