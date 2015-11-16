@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Firebase = require('firebase');
 var Vote = require('../views/vote');
 var Button = require('../components/button');
 var {
@@ -11,6 +12,7 @@ var {
   ListView
 } = React;
 
+var myFirebaseRef = new Firebase("https://radiant-inferno-7719.firebaseio.com/");
 
 var VoteView = React.createClass({
     getInitialState: function() {
@@ -85,14 +87,20 @@ var VoteView = React.createClass({
     votesInvalid: function() {
       alert('Please select three unique people!');
     },
-    submitVotes: function() {
-      console.log('Voted!')
-      // Do nothing just yet
-      return;
+    submitVotes: function(votes, self) {
+      var firebaseVotes = myFirebaseRef.child('votes');
+      firebaseVotes.push(votes, function(error) {
+        if (error) {
+          alert('Uh oh, something went wong.');
+        } else {
+          alert('Thanks for voting!');
+          self.props.navigator.popToTop();
+        }
+      })
     },
     render: function() {
       if (this.checkVotesAreValid(this.state.votes)) {
-        var button = <Button content={'Submit'} action={this.submitVotes} backgroundColor={'#3BCCA6'} />;
+        var button = <Button content={'Submit'} action={() => this.submitVotes(this.state.votes, this)} backgroundColor={'#3BCCA6'} />;
       } else {
         var button = <Button content={'Submit'} action={this.votesInvalid} backgroundColor={'#FFB8B8'} />;
       }
