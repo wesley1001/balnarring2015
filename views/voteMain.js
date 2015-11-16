@@ -73,11 +73,29 @@ var VoteView = React.createClass({
     goBack: function() {
       this.props.navigator.jumpBack();
     },
+    checkVotesAreValid: function(votes) {
+        var a = votes[0].selectedPerson;
+        var b = votes[1].selectedPerson;
+        var c = votes[2].selectedPerson;
+        var all = [a, b, c];
+        if (a === b || a === c || b === c) { return false; }
+        if (all.indexOf('Touch to select') > -1 ) { return false; }
+        return true;
+    },
+    votesInvalid: function() {
+      alert('Please select three unique people!');
+    },
     submitVotes: function() {
+      console.log('Voted!')
       // Do nothing just yet
       return;
     },
     render: function() {
+      if (this.checkVotesAreValid(this.state.votes)) {
+        var button = <Button content={'Submit'} action={this.submitVotes} backgroundColor={'#3BCCA6'} />;
+      } else {
+        var button = <Button content={'Submit'} action={this.votesInvalid} backgroundColor={'#FFB8B8'} />;
+      }
       return (
         <View style={styles.container}>
           <ListView
@@ -85,7 +103,7 @@ var VoteView = React.createClass({
             dataSource={this.state.dataSource}
             renderRow={this.renderRow}
           />
-          <Button content={'Submit'} action={this.props.submitVotes} />
+          {button}
         </View>
       );
     }
