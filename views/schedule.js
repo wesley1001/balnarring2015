@@ -9,6 +9,7 @@ var {
   TouchableHighlight,
   ListView
 } = React;
+var ResultsView = require('./results.js');
 
 var SCHEDULE_URL = "https://radiant-inferno-7719.firebaseio.com/schedule.json";
 
@@ -49,7 +50,7 @@ var ScheduleView = React.createClass({
 
       if (data.raceData) {
         raceData =
-        <View style={styles.raceData}>
+        <View>
           <Text>Name: {data.raceData.name}</Text>
           <Text>Length: {data.raceData.length}</Text>
           <Text>Hot Tip: {data.raceData.tip}</Text>
@@ -58,7 +59,7 @@ var ScheduleView = React.createClass({
 
       return (
         <View>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={() => this.goToResultsPage(data.title)}>
             <View style={styles.row}>
 
               <View style={styles.rowHeader}>
@@ -99,6 +100,16 @@ var ScheduleView = React.createClass({
           />
         </View>
       );
+    },
+    goToResultsPage: function(eventName) {
+
+      if (eventName === "Awards Ceremony") {
+        this.props.navigator.push({
+          name: 'Results',
+          component: ResultsView,
+          title: 'Results'
+        });
+      }
     }
 });
 
@@ -125,25 +136,22 @@ var styles = StyleSheet.create({
   rowTitleText: {
     fontSize: 17,
     fontWeight: '500',
-    marginBottom: 10,
+    marginBottom: 10
   },
   rowDescription: {
     fontSize: 15,
     color: '#888888',
-    lineHeight: 20,
+    lineHeight: 20
   },
   rowTime: {
     fontSize: 13
-  },
-  raceData: {
-    fontSize: 15
   },
   loading: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
 });
 
