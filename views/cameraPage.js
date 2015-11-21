@@ -4,11 +4,14 @@ var {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  NativeModules
 } = React;
 var Camera = require('react-native-camera');
 var VoteView = require('../views/voteMain.js');
-var ViewPhoto = require('./photo');
+var PhotoView = require('./photo');
+var NavBarButton = require('../components/NavBarButton');
+
 
 
 var cameraApp = React.createClass({
@@ -55,10 +58,43 @@ var cameraApp = React.createClass({
     this.setState(state);
   },
   _takePicture: function() {
-    this.refs.cam.capture(function(err, data) {
+    this.refs.cam.capture((err, data) =>{
       console.log(err, data);
+      if (err) { alert('Uh oh, there was an error taking this picture...'); return}
+      if (data) {
+        this.props.navigator.push({
+            name: 'PhotoView',
+            component: PhotoView,
+            title: 'Photo',
+            passProps: {
+              image: data
+            },
+        });
+      }
+    });
+  },
+  uploadPicture: function(uri) {
+    var obj = {
+      uri: uri, // either an 'assets-library' url (for files from photo library) or an image dataURL
+      uploadUrl: '',
+      fileName: Date.now(),
+      mimeType: "image",
+      headers: {
+        authorization: 'bearer '+token
+      },
+      data: {
+          // whatever properties you wish to send in the request
+          // along with the uploaded file
+      }
+    };
+    React.FileTransfer.upload(obj, (err, res) => {
+        // handle response
+        // it is an object with 'status' and 'data' properties
+        // if the file path protocol is not supported the status will be 0
+        // and the request won't be made at all
     });
   }
+
 });
 
 
