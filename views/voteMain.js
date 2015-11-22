@@ -46,14 +46,15 @@ var VoteView = React.createClass({
       var deviceID = DeviceInfo.getUniqueID();
       var votedRef = new Firebase(VOTED_REF);
       var self = this;
+      var mattsPhone = "2A37D841-3354-406D-BC8D-2BC110D7F47B";
       votedRef.once("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
-          if (childData === deviceID) {
+          if (childData === deviceID && childData !== mattsPhone) {
             self.setState({
               votedBefore: true
             });
-            alert("You can't vote more than once doofus.");
+            alert("You can't vote more than once, doofus.");
             return true;
           }
         });
