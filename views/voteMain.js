@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var DeviceInfo = require('react-native-device-info');
 var Firebase = require('firebase');
 var Vote = require('../views/vote');
 var Button = require('../components/button');
@@ -13,6 +14,7 @@ var {
 } = React;
 
 var myFirebaseRef = new Firebase("https://radiant-inferno-7719.firebaseio.com/");
+var VOTED_REF = "https://radiant-inferno-7719.firebaseio.com/votedAlready";
 
 var VoteView = React.createClass({
     getInitialState: function() {
@@ -39,6 +41,23 @@ var VoteView = React.createClass({
           }
         ],
       };
+    },
+    componentWillMount : function () {
+      var deviceID = DeviceInfo.getUniqueID();
+      var votedRef = new Firebase(VOTED_REF);
+      var self = this;
+      votedRef.once("value", function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var childData = childSnapshot.val();
+          if (childData === deviceID) {
+            self.setState({
+              votedBefore: true
+            });
+            alert("You can't vote more than once doofus.");
+            return true;
+          }
+        });
+      });
     },
     componentDidMount: function() {
       this.setState({
@@ -96,10 +115,16 @@ var VoteView = React.createClass({
           alert('Thanks for voting!');
           self.props.navigator.popToTop();
         }
+      });
+      var firebaseVotedAlready = myFirebaseRef.child('votedAlready');
+      firebaseVotedAlready.push(DeviceInfo.getUniqueID(), function(error) {
+        if (error) {
+          alert('Uh oh, something went wong.');
+        }
       })
     },
     render: function() {
-      if (this.checkVotesAreValid(this.state.votes)) {
+      if (this.checkVotesAreValid(this.state.votes) && !this.state.votedBefore) {
         var button = <Button content={'Submit'} action={() => this.submitVotes(this.state.votes, this)} backgroundColor={'#3BCCA6'} />;
       } else {
         var button = <Button content={'Submit'} action={this.votesInvalid} backgroundColor={'#FFB8B8'} />;
