@@ -32,6 +32,7 @@ var FeedView = React.createClass({
     fetch(PHOTOS_URL)
       .then((response) => response.json())
       .then((responseData) => {
+        console.log("RESPONSE DATA", responseData);
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(responseData),
           loaded: true,
@@ -63,8 +64,9 @@ var FeedView = React.createClass({
   },
 
   _renderRow: function(data) {
+    console.log(data);
     var imgSource = {
-      uri: data.base64
+      uri: data.url
     };
     return (
       <View style={styles.item}>
@@ -82,12 +84,9 @@ var FeedView = React.createClass({
 
 var styles = StyleSheet.create({
   list: {
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     backgroundColor: '#eee',
     marginTop: 64,
-    flex: 1
   },
   item: {
     margin: 5
@@ -96,17 +95,16 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 5,
     margin: 3,
-    width: 100,
-    height: 100,
     backgroundColor: '#F6F6F6',
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#CCC'
+    borderColor: '#CCC',
+    flex:1
   },
   thumb: {
-    width: 70,
-    height: 70
+    width: 300,
+    height: 300
   },
   text: {
     flex: 1,
