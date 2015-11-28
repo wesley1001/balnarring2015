@@ -71,7 +71,7 @@ var FeedView = React.createClass({
     return (
       <View style={styles.item}>
         <TouchableHighlight onPress={() => this._pressRow(data)} underlayColor="transparent">
-          <Image style={styles.thumb} source={imgSource} />
+          <Image style={styles.thumb} source={imgSource} resizeMode={Image.resizeMode.cover} />
         </TouchableHighlight>
       </View>
     );
@@ -89,7 +89,9 @@ var styles = StyleSheet.create({
     marginTop: 64,
   },
   item: {
-    margin: 5
+    margin: 5,
+    flex: 1,
+    // alignItems: 'stretch'
   },
   row: {
     justifyContent: 'center',
@@ -103,8 +105,8 @@ var styles = StyleSheet.create({
     flex:1
   },
   thumb: {
-    width: 300,
-    height: 300
+    height: 300,
+    flex: 1
   },
   text: {
     flex: 1,
