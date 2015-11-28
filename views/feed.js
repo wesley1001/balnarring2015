@@ -6,6 +6,7 @@ if(!React.ART) {
 }
 var Image = require('react-native-image-progress');
 var Progress = require('react-native-progress');
+var PhotoView = require('./photo');
 
 var {
   // Image,
@@ -94,7 +95,15 @@ var FeedView = React.createClass({
   },
 
   _pressRow: function(data) {
-    console.log('THIS PICURE HAS AN ID OF: ' + data.id);
+    console.log('THIS PICURE HAS A URL OF: ' + data.url);
+    this.props.navigator.push({
+        name: 'PhotoView',
+        component: PhotoView,
+        title: 'Photo',
+        passProps: {
+          image: data.url
+        },
+    });
   },
 });
 

@@ -13,7 +13,7 @@ var MyPhoto = React.createClass({
 	render: function() {
 		return (
 			<View style={styles.container}>
-				<Image style={styles.photo} source={{uri: this.props.image}}>
+				<Image style={styles.photo} source={{uri: this.props.image}} resizeMode="contain">
 
 				</Image>
 			</View>
@@ -24,7 +24,6 @@ var MyPhoto = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-  	alignItems: 'stretch'
   },
   photo: {
   	flex: 1,
