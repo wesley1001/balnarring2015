@@ -39,7 +39,6 @@ var FeedView = React.createClass({
     fetch(PHOTOS_URL)
       .then((response) => response.json())
       .then((responseData) => {
-        console.log("RESPONSE DATA", responseData);
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(responseData),
           loaded: true,
@@ -71,7 +70,6 @@ var FeedView = React.createClass({
   },
 
   _renderRow: function(data) {
-    console.log(data);
     var imgSource = {
       uri: data.url
     };
@@ -95,7 +93,6 @@ var FeedView = React.createClass({
   },
 
   _pressRow: function(data) {
-    console.log('THIS PICURE HAS A URL OF: ' + data.url);
     this.props.navigator.push({
         name: 'PhotoView',
         component: PhotoView,
