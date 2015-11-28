@@ -1,8 +1,14 @@
 'use strict';
 
 var React = require('react-native');
+if(!React.ART) {
+  React.ART = require('ReactNativeART');
+}
+var Image = require('react-native-image-progress');
+var Progress = require('react-native-progress');
+
 var {
-  Image,
+  // Image,
   ListView,
   TouchableHighlight,
   StyleSheet,
@@ -71,7 +77,17 @@ var FeedView = React.createClass({
     return (
       <View style={styles.item}>
         <TouchableHighlight onPress={() => this._pressRow(data)} underlayColor="transparent">
-          <Image style={styles.thumb} source={imgSource} resizeMode={Image.resizeMode.cover} />
+          <Image
+            style={styles.thumb}
+            source={imgSource}
+            indicator={Progress.Pie}
+            indicatorProps={{
+              size: 80,
+              borderWidth: 0,
+              color: 'rgba(150, 150, 150, 1)',
+              unfilledColor: 'rgba(200, 200, 200, 0.2)'
+            }}
+          />
         </TouchableHighlight>
       </View>
     );
