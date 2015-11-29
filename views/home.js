@@ -82,13 +82,6 @@ var HomeView = React.createClass({
             name: 'CameraView',
             component: CameraView,
             title: 'Camera',
-            rightButton: {
-              component: NavBarButton,
-              passProps: {
-                icon: 'awesome|th',
-                onPress: this.goToFeed,
-              }
-            },
         });
     },
     goHome: function() {
