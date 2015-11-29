@@ -33,7 +33,7 @@ var ScheduleView = React.createClass({
             dataSource: this.state.dataSource.cloneWithRows(responseData),
             loaded: true,
           });
-        })
+        }).catch( (error) => alert(error) )
         .done();
     },
     renderLoadingView: function() {

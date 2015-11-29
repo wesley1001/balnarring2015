@@ -24,6 +24,7 @@ var MyPhoto = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#eee'
   },
   photo: {
   	flex: 1,

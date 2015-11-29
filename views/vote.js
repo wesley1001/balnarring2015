@@ -43,7 +43,7 @@ var VotePage = React.createClass({
             dataSource: this.state.dataSource.cloneWithRows(responseData.sort(this.sortData)),
             loaded: true,
           });
-        })
+        }).catch( (error) => alert(error) )
         .done();
     },
     renderLoadingView: function() {

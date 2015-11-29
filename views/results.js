@@ -66,7 +66,8 @@ var resultsView = React.createClass({
           }
 
 
-        }).done(() => {
+        }).catch( (error) => alert(error) )
+          .done(() => {
           // push votelist into array
           for (var person in this.state.voteList) {
             if (this.state.voteList.hasOwnProperty(person)) {
