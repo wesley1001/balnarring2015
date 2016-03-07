@@ -4,6 +4,7 @@ var React = require('react-native');
 var FeedView = require('../views/feed.js');
 var ScheduleView = require('../views/schedule.js');
 var VoteView = require('../views/voteMain.js');
+var AboutView = require('../views/about.js');
 var CameraView = require('../views/cameraPage.js');
 var NavBarButton = require('../components/NavBarButton');
 var Icon = require('react-native-vector-icons/FontAwesome');
@@ -17,6 +18,7 @@ var {
   ListView,
   TouchableHighlight
 } = React;
+
 
 var HomeView = React.createClass({
     goToFeed: function() {
@@ -61,22 +63,42 @@ var HomeView = React.createClass({
             },
         });
     },
+    goToAbout: function() {
+      this.props.navigator.push({
+            name: 'About',
+            component: AboutView,
+            title: 'About',
+            rightButton: {
+              component: NavBarButton,
+              passProps: {
+                icon: 'awesome|camera',
+                onPress: this.goToCamera,
+              }
+            },
+        });
+    },
     goToCamera: function() {
       this.props.navigator.push({
             name: 'CameraView',
             component: CameraView,
             title: 'Camera',
-            rightButton: {
-              component: NavBarButton,
-              passProps: {
-                icon: 'awesome|th',
-                onPress: this.goHome,
-              }
-            },
         });
     },
     goHome: function() {
       this.props.navigator.popToTop();
+    },
+    upload: function() {
+      fetch('https://balnarring.s3.amazonaws.com', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstParam: 'yourValue',
+          secondParam: 'yourOtherValue',
+        })
+      })
     },
     getInitialState: function() {
       return {
@@ -92,22 +114,28 @@ var HomeView = React.createClass({
             icon: 'th'
           },
           {
-            title: "Schedule",
-            onPress: this.goToSchedule,
-            backgroundColor: '#41D39B',
-            icon: 'list'
-          },
-          {
             title: "Camera",
             onPress: this.goToCamera,
             backgroundColor: '#F6AE2D',
             icon: 'camera'
           },
           {
+            title: "Schedule",
+            onPress: this.goToSchedule,
+            backgroundColor: '#E88D67',
+            icon: 'list'
+          },
+          {
             title: "Vote",
             onPress: this.goToVote,
-            backgroundColor: '#59D2FE',
+            backgroundColor: '#4D9DE0',
             icon: 'trophy'
+          },
+          {
+            title: "About",
+            onPress: this.goToAbout,
+            backgroundColor: '#50FFB1',
+            icon: 'info-circle'
           },
 
         ]

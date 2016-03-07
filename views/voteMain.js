@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var DeviceInfo = require('react-native-device-info');
+var Firebase = require('firebase');
 var Vote = require('../views/vote');
 var Button = require('../components/button');
 var {
@@ -11,6 +13,8 @@ var {
   ListView
 } = React;
 
+var myFirebaseRef = new Firebase("https://radiant-inferno-7719.firebaseio.com/");
+var VOTED_REF = "https://radiant-inferno-7719.firebaseio.com/votedAlready";
 
 var VoteView = React.createClass({
     getInitialState: function() {
@@ -19,37 +23,62 @@ var VoteView = React.createClass({
           rowHasChanged: (row1, row2) => row1 !== row2,
         }),
         loaded: false,
-        rowData: [
+        votes: [
           {
+            index: 0, // for my sanity
             voteCount: 3,
             selectedPerson: "Touch to select"
           },
           {
+            index: 1,
             voteCount: 2,
             selectedPerson: "Touch to select"
           },
           {
+            index: 2,
             voteCount: 1,
             selectedPerson: "Touch to select"
           }
-        ]
+        ],
       };
+    },
+    componentWillMount : function () {
+      var deviceID = DeviceInfo.getUniqueID();
+      var votedRef = new Firebase(VOTED_REF);
+      var self = this;
+      var mattsPhone = "4F72B617-6A9B-418D-805F-BFA02EE67C26";
+      votedRef.once("value", function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var childData = childSnapshot.val();
+          if (childData === deviceID && childData !== mattsPhone) {
+            self.setState({
+              votedBefore: true
+            });
+            alert("You can't vote more than once, doofus.");
+            return true;
+          }
+        });
+      });
     },
     componentDidMount: function() {
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this.state.rowData)
+        dataSource: this.state.dataSource.cloneWithRows(this.state.votes)
       });
     },
-    showPeople: function() {
+    showPeople: function(voteIndex) {
       this.props.navigator.push({
             name: 'VotePage',
-            component: Vote
+            component: Vote,
+            passProps: {
+              votes: this.state.votes,
+              voteIndex: voteIndex
+            }
         })
     },
     renderRow: function(data) {
       return (
         <View>
-          <TouchableHighlight onPress={this.showPeople}>
+          <TouchableHighlight onPress={() => this.showPeople(data.index)}>
             <View style={styles.row}>
               <Text style={styles.voteCount}>
                 {data.voteCount}
@@ -66,11 +95,41 @@ var VoteView = React.createClass({
     goBack: function() {
       this.props.navigator.jumpBack();
     },
-    submitVotes: function() {
-      // Do nothing just yet
-      return;
+    checkVotesAreValid: function(votes) {
+        var a = votes[0].selectedPerson;
+        var b = votes[1].selectedPerson;
+        var c = votes[2].selectedPerson;
+        var all = [a, b, c];
+        if (a === b || a === c || b === c) { return false; }
+        if (all.indexOf('Touch to select') > -1 ) { return false; }
+        return true;
+    },
+    votesInvalid: function() {
+      alert('Please select three unique people!');
+    },
+    submitVotes: function(votes, self) {
+      var firebaseVotes = myFirebaseRef.child('votes');
+      firebaseVotes.push(votes, function(error) {
+        if (error) {
+          alert('Uh oh, something went wong.');
+        } else {
+          alert('Thanks for voting!');
+          self.props.navigator.popToTop();
+        }
+      });
+      var firebaseVotedAlready = myFirebaseRef.child('votedAlready');
+      firebaseVotedAlready.push(DeviceInfo.getUniqueID(), function(error) {
+        if (error) {
+          alert('Uh oh, something went wong.');
+        }
+      })
     },
     render: function() {
+      if (this.checkVotesAreValid(this.state.votes) && !this.state.votedBefore) {
+        var button = <Button content={'Submit'} action={() => this.submitVotes(this.state.votes, this)} backgroundColor={'#3BCCA6'} />;
+      } else {
+        var button = <Button content={'Submit'} action={this.votesInvalid} backgroundColor={'#FFB8B8'} />;
+      }
       return (
         <View style={styles.container}>
           <ListView
@@ -78,7 +137,7 @@ var VoteView = React.createClass({
             dataSource={this.state.dataSource}
             renderRow={this.renderRow}
           />
-          <Button content={'Submit'} action={this.props.submitVotes} />
+          {button}
         </View>
       );
     }

@@ -11,7 +11,7 @@ var {
 var MyButton = React.createClass({
 	render: function() {
 		return (
-			<TouchableOpacity style={styles.button} onPress={this.props.action}>
+			<TouchableOpacity style={[styles.button, {backgroundColor: this.props.backgroundColor}]} onPress={this.props.action}>
 				<Text style={styles.content}> {this.props.content} </Text>
 			</TouchableOpacity>
 		)
@@ -21,7 +21,6 @@ var MyButton = React.createClass({
 var styles = StyleSheet.create({
 	button: {
 		height: 75,
-		backgroundColor: '#3BCCA6',
 		borderRadius: 5,
 		flexDirection: 'row',
 		alignItems: 'center',

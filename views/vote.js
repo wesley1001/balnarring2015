@@ -43,7 +43,7 @@ var VotePage = React.createClass({
             dataSource: this.state.dataSource.cloneWithRows(responseData.sort(this.sortData)),
             loaded: true,
           });
-        })
+        }).catch( (error) => alert(error) )
         .done();
     },
     renderLoadingView: function() {
@@ -57,13 +57,15 @@ var VotePage = React.createClass({
         </View>
       );
     },
-    selectPerson: function() {
+    selectPerson: function(person) {
+      this.props.votes[this.props.voteIndex].selectedPerson = person.name;
+      this.props.navigator.pop();
       return;
     },
     renderRow: function(data) {
       return (
         <View>
-          <TouchableHighlight onPress={this.selectPerson}>
+          <TouchableHighlight onPress={() => this.selectPerson(data)}>
             <View style={styles.row}>
               <Image source={require('./../images/person-icon.png') } style={styles.image} />
               <Text style={styles.name}>
