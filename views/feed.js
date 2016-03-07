@@ -30,8 +30,6 @@ var FeedView = React.createClass({
     };
   },
 
-  _pressData: ({}: {[key: number]: boolean}),
-
   componentWillMount: function() {
     this.fetchData();
   },

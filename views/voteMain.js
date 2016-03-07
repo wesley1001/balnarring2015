@@ -46,7 +46,7 @@ var VoteView = React.createClass({
       var deviceID = DeviceInfo.getUniqueID();
       var votedRef = new Firebase(VOTED_REF);
       var self = this;
-      var mattsPhone = "2A37D841-3354-406D-BC8D-2BC110D7F47B";
+      var mattsPhone = "4F72B617-6A9B-418D-805F-BFA02EE67C26";
       votedRef.once("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
